@@ -21,8 +21,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.quizgame.R
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.quizgame.ui.theme.QuizGameTheme
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+
 
 
 
@@ -131,7 +130,7 @@ fun GameLayout(
                 RadioButton(
                     modifier = Modifier.padding(end = 16.dp),
                     selected = (selectedItem == label),
-                    onClick = null // null recommended for accessibility with screen readers
+                    onClick = null
                 )
                 if(isAnswer){
                     if(userAnswer == label){

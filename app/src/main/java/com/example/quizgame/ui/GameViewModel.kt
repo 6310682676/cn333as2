@@ -72,7 +72,10 @@ class GameViewModel : ViewModel() {
 
 
     fun updateUserGuess(answer: String){
-        userAnswer = answer
+        if(! _uiState.value.isAnswer){
+            userAnswer = answer
+        }
+
     }
 
     fun nextQuestion(){
@@ -87,6 +90,7 @@ class GameViewModel : ViewModel() {
                 currentQuizCount = currentState.currentQuizCount.inc(),
             )
         }
+        userAnswer = ""
     }
     fun checkUserGuess() {
         val answer: String? = (currentQuiz as Map<String, String>)["answer"]
