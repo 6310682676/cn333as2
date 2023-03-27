@@ -47,7 +47,7 @@ val allQuizzes =
             "answer" to "Australia"),
         mapOf(
             "question" to "Which country is also known as the Land of Tulips?",
-            "choice" to setOf("Netherlands", "Italy", "Switzerland"),
+            "choice" to setOf("Netherlands", "Italy", "Switzerland", "Thailand"),
             "answer" to "Netherlands"),
     )
 

@@ -79,18 +79,30 @@ class GameViewModel : ViewModel() {
     }
 
     fun nextQuestion(){
-        _uiState.update { currentState ->
-            currentState.copy(
-                isAnswerCorrect = false,
-                isAnswer = false,
-                currentQuiz = pickRandomQuiz(),
-                currentQuestion = getQuestion(),
-                currentChoice = getChoice(),
-                currentAnswer = getAnswer(),
-                currentQuizCount = currentState.currentQuizCount.inc(),
-            )
+        if (usedQuiz.size == MAX_NO_OF_QUIZZES){
+//            //Last round in the game, update isGameOver to true, don't pick a new word
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isAnswerCorrect = false,
+                    isGameOver = true
+                )
+            }
+       }else{
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isAnswerCorrect = false,
+                    isAnswer = false,
+                    currentQuiz = pickRandomQuiz(),
+                    currentQuestion = getQuestion(),
+                    currentChoice = getChoice(),
+                    currentAnswer = getAnswer(),
+                    currentQuizCount = currentState.currentQuizCount.inc(),
+                )
+            }
+            userAnswer = ""
         }
-        userAnswer = ""
+
+
     }
     fun checkUserGuess() {
         val answer: String? = (currentQuiz as Map<String, String>)["answer"]
@@ -105,17 +117,17 @@ class GameViewModel : ViewModel() {
     }
 
     private fun updateGameState(updatedScore: Int) {
-        if (usedQuiz.size == MAX_NO_OF_QUIZZES){
-            //Last round in the game, update isGameOver to true, don't pick a new word
-            _uiState.update { currentState ->
-                currentState.copy(
-                    isAnswerCorrect = false,
-                    score = updatedScore,
-                    isGameOver = true
-                )
-            }
-        } else{
-            // Normal round in the game
+//        if (usedQuiz.size == MAX_NO_OF_QUIZZES){
+//            //Last round in the game, update isGameOver to true, don't pick a new word
+//            _uiState.update { currentState ->
+//                currentState.copy(
+//                    isAnswerCorrect = false,
+//                    score = updatedScore,
+//                    isGameOver = true
+//                )
+//            }
+//        } else{
+//            // Normal round in the game
             _uiState.update { currentState ->
                 currentState.copy(
                     isAnswer = true,
@@ -123,7 +135,7 @@ class GameViewModel : ViewModel() {
                     score = updatedScore
                 )
             }
-        }
+//        }
     }
 }
 
