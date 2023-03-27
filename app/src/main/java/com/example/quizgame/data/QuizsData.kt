@@ -4,7 +4,7 @@ package com.example.quizgame.data
 
 
 const val MAX_NO_OF_QUIZZES = 10
-const val SCORE_INCREASE = 10
+const val SCORE_INCREASE = 1
 
 
 val allQuizzes =
